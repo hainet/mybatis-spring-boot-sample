@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS person;
+CREATE TABLE person (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name CHAR,
+  age INT
+);

@@ -1,0 +1,2 @@
+mybatis:
+  type-aliases-package: com.hainet.mybatis.spring.boot.sample.domain
