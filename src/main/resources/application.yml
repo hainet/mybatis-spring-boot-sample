@@ -1,2 +1,7 @@
 mybatis:
   type-aliases-package: com.hainet.mybatis.spring.boot.sample.domain
+  configuration:
+    auto-mapping-unknown-column-behavior: warning
+    default-statement-timeout: 20
+    default-fetch-size: 100
+    map-underscore-to-camel-case: true
