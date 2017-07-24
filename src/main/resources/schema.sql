@@ -2,5 +2,21 @@ DROP TABLE IF EXISTS person;
 CREATE TABLE person (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name CHAR,
+  age INT,
+  address_id INT,
+  time TIMESTAMP
+);
+
+DROP TABLE IF EXISTS address;
+CREATE TABLE address (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  zip_code CHAR,
+  state CHAR
+);
+
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name CHAR,
   age INT
 );

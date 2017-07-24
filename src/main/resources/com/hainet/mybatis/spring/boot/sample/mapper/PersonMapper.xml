@@ -4,7 +4,46 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hainet.mybatis.spring.boot.sample.mapper.PersonMapper">
-  <select id="findAll" resultType="Person">
+
+  <resultMap id="personResultMap" type="Person">
+    <id property="id" column="id" />
+    <result property="name" column="name" />
+    <result property="age" column="age" />
+    <result property="time" column="time" />
+    <association property="address" column="address_id" javaType="Address" select="findByAddressId">
+      <result property="zipCode" column="zip_code" />
+      <result property="state" column="state" />
+    </association>
+  </resultMap>
+
+  <select id="findAllResultType" resultType="Person">
     SELECT * FROM person
+  </select>
+
+  <select id="findAll" resultMap="personResultMap">
+    SELECT * FROM person
+  </select>
+
+  <select id="findById" parameterType="int" resultMap="personResultMap">
+    SELECT * FROM person WHERE id = #{id}
+  </select>
+
+  <insert id="insert" parameterType="Person">
+    INSERT INTO person (name, age, zip_code, state, time)
+    VALUES (#{name}, #{age}, #{address.zipCode}, #{address.state}, #{time})
+  </insert>
+
+  <update id="update" parameterType="Person">
+    UPDATE person SET (name, age, zip_code, state, time)
+    = (#{name}, #{age}, #{address.zipCode}, #{address.state}, #{time})
+    WHERE id = #{id}
+  </update>
+
+  <delete id="delete" parameterType="Person">
+    DELETE FROM person WHERE id = #{id}
+  </delete>
+
+  <select id="findByAddressId" parameterType="int" resultType="Address">
+    SELECT * FROM address WHERE id = #{address_id}
   </select>
 </mapper>

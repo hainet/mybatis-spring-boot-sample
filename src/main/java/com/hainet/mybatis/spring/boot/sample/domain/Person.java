@@ -2,6 +2,8 @@ package com.hainet.mybatis.spring.boot.sample.domain;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class Person {
 
@@ -10,4 +12,8 @@ public class Person {
     private String name;
 
     private int age;
+
+    private Address address;
+
+    private LocalDateTime time;
 }
