@@ -11,9 +11,15 @@
     <result property="age" column="age" />
     <result property="time" column="time" />
     <association property="address" column="address_id" javaType="Address" select="findByAddressId">
+      <id property="id" column="id" />
       <result property="zipCode" column="zip_code" />
       <result property="state" column="state" />
     </association>
+    <collection property="skills" column="job" javaType="ArrayList" ofType="Skill" select="findByJob">
+      <id property="id" column="id" />
+      <result property="job" column="job" />
+      <result property="skill" column="skill" />
+    </collection>
   </resultMap>
 
   <select id="findAllResultType" resultType="Person">
@@ -45,5 +51,9 @@
 
   <select id="findByAddressId" parameterType="int" resultType="Address">
     SELECT * FROM address WHERE id = #{address_id}
+  </select>
+
+  <select id="findByJob" parameterType="String" resultType="Skill">
+    SELECT * FROM skill WHERE job = #{job}
   </select>
 </mapper>

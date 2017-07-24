@@ -4,6 +4,7 @@ CREATE TABLE person (
   name CHAR,
   age INT,
   address_id INT,
+  job CHAR,
   time TIMESTAMP
 );
 
@@ -12,6 +13,13 @@ CREATE TABLE address (
   id INT AUTO_INCREMENT PRIMARY KEY,
   zip_code CHAR,
   state CHAR
+);
+
+DROP TABLE IF EXISTS skill;
+CREATE TABLE skill (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  job CHAR,
+  name CHAR
 );
 
 DROP TABLE IF EXISTS user;
