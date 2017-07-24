@@ -34,6 +34,25 @@
     SELECT * FROM person WHERE id = #{id}
   </select>
 
+  <select id="findByNameAndAge" resultMap="personResultMap">
+    SELECT * FROM person
+    <where>
+      <if test="name != null">
+        AND name = #{name}
+      </if>
+      AND age = #{age}
+    </where>
+  </select>
+
+  <select id="findByNames" parameterType="String" resultMap="personResultMap">
+    SELECT * FROM person
+    <where>
+      <foreach item="name" collection="list" open="AND name IN (" separator="," close=")">
+        #{name}
+      </foreach>
+    </where>
+  </select>
+
   <insert id="insert" parameterType="Person">
     INSERT INTO person (name, age, zip_code, state, time)
     VALUES (#{name}, #{age}, #{address.zipCode}, #{address.state}, #{time})
