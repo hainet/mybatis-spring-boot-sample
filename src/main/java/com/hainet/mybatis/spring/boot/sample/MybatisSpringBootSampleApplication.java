@@ -1,7 +1,9 @@
 package com.hainet.mybatis.spring.boot.sample;
 
+import com.hainet.mybatis.spring.boot.sample.domain.Person;
 import com.hainet.mybatis.spring.boot.sample.mapper.PersonMapper;
 import com.hainet.mybatis.spring.boot.sample.mapper.UserMapper;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -31,5 +33,13 @@ public class MybatisSpringBootSampleApplication implements CommandLineRunner {
     @Transactional
     public void run(String... args) {
         // do something
+
+        // RowBounds
+        personMapper.findAllRowBounds(new RowBounds(0, 1));
+
+        // ResultHandler
+        personMapper.findAllResultHandler(context -> {
+            // do something
+        });
     }
 }

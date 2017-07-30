@@ -30,6 +30,14 @@
     SELECT * FROM person
   </select>
 
+  <select id="findAllRowBounds" resultMap="personResultMap">
+    SELECT * FROM person
+  </select>
+
+  <select id="findAllResultHandler" resultMap="personResultMap">
+    SELECT * FROM person
+  </select>
+
   <select id="findById" parameterType="int" resultMap="personResultMap">
     SELECT * FROM person WHERE id = #{id}
   </select>
