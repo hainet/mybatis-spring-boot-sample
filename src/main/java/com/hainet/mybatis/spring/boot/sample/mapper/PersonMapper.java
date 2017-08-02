@@ -3,6 +3,7 @@ package com.hainet.mybatis.spring.boot.sample.mapper;
 import com.hainet.mybatis.spring.boot.sample.domain.Person;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
@@ -18,6 +19,8 @@ public interface PersonMapper {
     List<Person> findAllRowBounds(RowBounds rowBounds);
 
     void findAllResultHandler(ResultHandler<Person> resultHandler);
+
+    Cursor<Person> findAllCursor();
 
     Person findById(int id);
 

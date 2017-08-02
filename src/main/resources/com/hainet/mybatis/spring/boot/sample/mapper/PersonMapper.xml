@@ -38,6 +38,10 @@
     SELECT * FROM person
   </select>
 
+  <select id="findAllCursor" resultMap="personResultMap">
+    SELECT * FROM person
+  </select>
+
   <select id="findById" parameterType="int" resultMap="personResultMap">
     SELECT * FROM person WHERE id = #{id}
   </select>
