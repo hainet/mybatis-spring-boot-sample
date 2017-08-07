@@ -19,4 +19,10 @@ public class Person {
     private List<Skill> skills;
 
     private LocalDateTime time;
+
+    private String unmappedString;
+
+    private int unmappedInt;
+
+    private boolean unmappedBoolean;
 }
