@@ -11,8 +11,7 @@ CREATE TABLE person (
 DROP TABLE IF EXISTS address;
 CREATE TABLE address (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  zip_code CHAR,
-  state CHAR
+  zip_code CHAR
 );
 
 DROP TABLE IF EXISTS skill;
