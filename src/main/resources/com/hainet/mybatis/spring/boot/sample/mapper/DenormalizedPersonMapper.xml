@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hainet.mybatis.spring.boot.sample.mapper.DenormalizedPersonMapper">
+
+    <resultMap id="denormalizedPersonResultMap" type="DenormalizedPerson">
+        <id property="id" column="id" />
+        <association property="address" column="address_id" javaType="Address" select="findByAddressId">
+            <id property="id" column="id" />
+            <result property="zipCode" column="zip_code" />
+        </association>
+        <collection property="skills" column="job" javaType="ArrayList" ofType="Skill" select="findByJob">
+            <id property="id" column="id" />
+            <result property="job" column="job" />
+            <result property="skill" column="skill" />
+        </collection>
+    </resultMap>
+
+    <select id="findAll" resultMap="denormalizedPersonResultMap">
+        SELECT * FROM person
+    </select>
+
+    <select id="findByAddressId" parameterType="int" resultType="Address">
+        SELECT * FROM address WHERE id = #{address_id}
+    </select>
+
+    <select id="findByJob" parameterType="String" resultType="Skill">
+        SELECT * FROM skill WHERE job = #{job}
+    </select>
+</mapper>
