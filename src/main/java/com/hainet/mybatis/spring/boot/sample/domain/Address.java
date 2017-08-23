@@ -8,6 +8,4 @@ public class Address {
     private int id;
 
     private String zipCode;
-
-    private State state;
 }
