@@ -22,9 +22,8 @@ CREATE TABLE skill (
   name CHAR
 );
 
-DROP TABLE IF EXISTS user;
-CREATE TABLE user (
+DROP TABLE IF EXISTS constructor_person;
+CREATE TABLE constructor_person (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name CHAR,
-  age INT
+  name CHAR
 );

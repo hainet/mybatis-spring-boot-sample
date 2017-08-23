@@ -10,4 +10,4 @@ INSERT INTO skill (job, name) VALUES ('programmer', 'spring');
 INSERT INTO skill (job, name) VALUES ('programmer', 'mybatis');
 
 -- user
-INSERT INTO user (name, age) VALUES ('hainet', 24);
+INSERT INTO constructor_person (name) VALUES ('hainet');

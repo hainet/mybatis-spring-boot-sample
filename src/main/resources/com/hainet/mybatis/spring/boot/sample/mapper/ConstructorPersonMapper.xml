@@ -3,17 +3,16 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hainet.mybatis.spring.boot.sample.mapper.UserMapper">
+<mapper namespace="com.hainet.mybatis.spring.boot.sample.mapper.ConstructorPersonMapper">
 
-  <resultMap id="userResultMap" type="User">
+  <resultMap id="constructorPersonResultMap" type="ConstructorPerson">
     <constructor>
       <idArg column="id" javaType="_int" />
       <arg column="name" javaType="String" />
-      <arg column="age" javaType="_int" />
     </constructor>
   </resultMap>
 
-  <select id="findAll" resultMap="userResultMap">
-    SELECT * FROM user
+  <select id="findAll" resultMap="constructorPersonResultMap">
+    SELECT * FROM constructor_person
   </select>
 </mapper>

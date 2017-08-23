@@ -5,21 +5,14 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class User {
+public class ConstructorPerson {
 
     private int id;
 
     private String name;
 
-    private int age;
-
-    public User(int id) {
-        this.id = id;
-    }
-
-    public User(int id, String name, int age) {
+    public ConstructorPerson(int id, String name) {
         this.id = id;
         this.name = name;
-        this.age = age;
     }
 }
