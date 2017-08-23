@@ -6,9 +6,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -88,5 +91,21 @@ public class PersonMapperTest {
         for (Person person : mapper.findAll()) {
             System.out.println(person);
         }
+    }
+
+    @Test
+    @Sql(scripts = "/bulk-insert.sql")
+    @Transactional
+    public void defaultExecutorTypeTest() {
+        List<Person> people = mapper.findAll();
+
+        // mybatis.configuration.default-executor-type: simple or reuse
+        final long start = System.currentTimeMillis();
+
+        for (Person person : people) {
+            mapper.findById(person.getId());
+        }
+
+        System.out.println(System.currentTimeMillis() - start);
     }
 }

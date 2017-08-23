@@ -5,3 +5,4 @@ mybatis:
     default-statement-timeout: 20
     default-fetch-size: 100
     map-underscore-to-camel-case: true
+    default-executor-type: reuse
