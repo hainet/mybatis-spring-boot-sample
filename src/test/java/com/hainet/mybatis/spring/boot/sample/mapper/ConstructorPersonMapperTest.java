@@ -11,11 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ConstructorPersonMapperTest {
 
     @Autowired
-    private ConstructorPersonMapper constructorPersonMapper;
+    private ConstructorPersonMapper mapper;
 
     @Test
     public void findAllTest() {
-        System.out.println(constructorPersonMapper.findAll());
+        System.out.println(mapper.findAll());
     }
-
 }

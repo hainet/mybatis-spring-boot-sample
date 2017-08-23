@@ -14,7 +14,7 @@ public class DenormalizedPersonMapperTest {
     private DenormalizedPersonMapper mapper;
 
     @Test
-    public void findAll() {
+    public void findAllTest() {
         System.out.println(mapper.findAll());
     }
 
