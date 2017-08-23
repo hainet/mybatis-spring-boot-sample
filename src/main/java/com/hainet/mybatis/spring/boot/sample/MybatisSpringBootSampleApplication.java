@@ -2,7 +2,7 @@ package com.hainet.mybatis.spring.boot.sample;
 
 import com.hainet.mybatis.spring.boot.sample.domain.Person;
 import com.hainet.mybatis.spring.boot.sample.mapper.PersonMapper;
-import com.hainet.mybatis.spring.boot.sample.mapper.UserMapper;
+import com.hainet.mybatis.spring.boot.sample.mapper.ConstructorPersonMapper;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,44 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 
 @SpringBootApplication
-public class MybatisSpringBootSampleApplication implements CommandLineRunner {
-
-    private final PersonMapper personMapper;
-
-    private final UserMapper userMapper;
-
-    @Autowired
-    public MybatisSpringBootSampleApplication(
-            PersonMapper personMapper,
-            UserMapper userMapper) {
-        this.personMapper = personMapper;
-        this.userMapper = userMapper;
-    }
+public class MybatisSpringBootSampleApplication  {
 
     public static void main(String[] args) {
         SpringApplication.run(MybatisSpringBootSampleApplication.class, args);
-    }
-
-    @Override
-    @Transactional
-    public void run(String... args) {
-        // do something
-
-        // RowBounds
-        personMapper.findAllRowBounds(new RowBounds(0, 1));
-
-        // ResultHandler
-        personMapper.findAllResultHandler(context -> {
-            // do something
-        });
-
-        // Cursor
-        try (Cursor<Person> people = personMapper.findAllCursor()) {
-            for (Person person : people) {
-                // do something
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

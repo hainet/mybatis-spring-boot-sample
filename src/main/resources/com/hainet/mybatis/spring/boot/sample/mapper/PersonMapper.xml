@@ -5,58 +5,35 @@
 
 <mapper namespace="com.hainet.mybatis.spring.boot.sample.mapper.PersonMapper">
 
-  <resultMap id="personResultMap" type="Person">
-    <id property="id" column="id" />
-    <result property="name" column="name" />
-    <result property="age" column="age" />
-    <result property="time" column="time" />
-    <association property="address" column="address_id" javaType="Address" select="findByAddressId">
-      <id property="id" column="id" />
-      <result property="zipCode" column="zip_code" />
-      <result property="state" column="state" />
-    </association>
-    <collection property="skills" column="job" javaType="ArrayList" ofType="Skill" select="findByJob">
-      <id property="id" column="id" />
-      <result property="job" column="job" />
-      <result property="skill" column="skill" />
-    </collection>
-  </resultMap>
-
-  <select id="findAllResultType" resultType="Person">
+  <select id="findAll" resultType="Person">
     SELECT * FROM person
   </select>
 
-  <select id="findAll" resultMap="personResultMap">
+  <select id="findAllRowBounds" resultType="Person">
     SELECT * FROM person
   </select>
 
-  <select id="findAllRowBounds" resultMap="personResultMap">
+  <select id="findAllResultHandler" resultType="Person">
     SELECT * FROM person
   </select>
 
-  <select id="findAllResultHandler" resultMap="personResultMap">
+  <select id="findAllCursor" resultType="Person">
     SELECT * FROM person
   </select>
 
-  <select id="findAllCursor" resultMap="personResultMap">
-    SELECT * FROM person
-  </select>
-
-  <select id="findById" parameterType="int" resultMap="personResultMap">
+  <select id="findById" parameterType="int" resultType="Person">
     SELECT * FROM person WHERE id = #{id}
   </select>
 
-  <select id="findByNameAndAge" resultMap="personResultMap">
+  <select id="findByNameAndAge" resultType="Person">
     SELECT * FROM person
     <where>
-      <if test="name != null">
-        AND name = #{name}
-      </if>
+      AND name = #{name}
       AND age = #{age}
     </where>
   </select>
 
-  <select id="findByNames" parameterType="String" resultMap="personResultMap">
+  <select id="findByNames" parameterType="String" resultType="Person">
     SELECT * FROM person
     <where>
       <foreach item="name" collection="list" open="AND name IN (" separator="," close=")">
@@ -66,25 +43,17 @@
   </select>
 
   <insert id="insert" parameterType="Person">
-    INSERT INTO person (name, age, zip_code, state, time)
-    VALUES (#{name}, #{age}, #{address.zipCode}, #{address.state}, #{time})
+    INSERT INTO person (name, age, address_id, job, time)
+    VALUES (#{name}, #{age}, #{addressId}, #{job}, #{time})
   </insert>
 
   <update id="update" parameterType="Person">
-    UPDATE person SET (name, age, zip_code, state, time)
-    = (#{name}, #{age}, #{address.zipCode}, #{address.state}, #{time})
+    UPDATE person SET (name, age, address_id, job, time)
+    = (#{name}, #{age}, #{addressId}, #{job}, CURRENT_TIMESTAMP)
     WHERE id = #{id}
   </update>
 
   <delete id="delete" parameterType="Person">
     DELETE FROM person WHERE id = #{id}
   </delete>
-
-  <select id="findByAddressId" parameterType="int" resultType="Address">
-    SELECT * FROM address WHERE id = #{address_id}
-  </select>
-
-  <select id="findByJob" parameterType="String" resultType="Skill">
-    SELECT * FROM skill WHERE job = #{job}
-  </select>
 </mapper>

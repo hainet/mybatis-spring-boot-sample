@@ -1,5 +1,7 @@
 -- person
 INSERT INTO person (name, age, address_id, job, time) VALUES ('hainet', 24, 1, 'programmer', CURRENT_TIMESTAMP);
+INSERT INTO person (name, age, address_id, job, time) VALUES ('hainet', 24, 1, 'programmer', CURRENT_TIMESTAMP);
+INSERT INTO person (name, age, address_id, job, time) VALUES ('hainet', 24, 1, 'programmer', CURRENT_TIMESTAMP);
 
 -- address
 INSERT INTO address (zip_code) VALUES ('1234567');

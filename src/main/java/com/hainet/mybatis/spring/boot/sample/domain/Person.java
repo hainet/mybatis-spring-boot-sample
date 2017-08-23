@@ -14,9 +14,9 @@ public class Person {
 
     private int age;
 
-    private Address address;
+    private int addressId;
 
-    private List<Skill> skills;
+    private String job;
 
     private LocalDateTime time;
 

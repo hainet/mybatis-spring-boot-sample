@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface PersonMapper {
-
-    List<Person> findAllResultType();
 
     List<Person> findAll();
 
