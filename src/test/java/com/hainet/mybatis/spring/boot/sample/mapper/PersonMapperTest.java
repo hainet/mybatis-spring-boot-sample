@@ -1,6 +1,7 @@
 package com.hainet.mybatis.spring.boot.sample.mapper;
 
 import com.hainet.mybatis.spring.boot.sample.domain.Person;
+import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,9 +44,15 @@ public class PersonMapperTest {
     }
 
     @Test
+    @Transactional
     public void findAllCursorTest() {
-        for (Person person : mapper.findAllCursor()) {
-            System.out.println(person);
+        try (Cursor<Person> people = mapper.findAllCursor()) {
+            for (Person person : people) {
+                System.out.println(people.getCurrentIndex());
+                System.out.println(person);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
