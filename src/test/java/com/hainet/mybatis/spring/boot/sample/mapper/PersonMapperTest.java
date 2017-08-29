@@ -39,6 +39,7 @@ public class PersonMapperTest {
     @Test
     public void findAllResultHandlerTest() {
         mapper.findAllResultHandler(context -> {
+            System.out.println(context.getResultCount());
             System.out.println(context.getResultObject());
         });
     }
