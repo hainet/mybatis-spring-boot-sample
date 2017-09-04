@@ -1,9 +1,11 @@
 package com.hainet.mybatis.spring.boot.sample.mapper;
 
 import com.hainet.mybatis.spring.boot.sample.domain.Person;
+import org.apache.ibatis.annotations.Flush;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.cursor.Cursor;
+import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
@@ -32,5 +34,10 @@ public interface PersonMapper {
 
     int update(Person person);
 
+    int updateAgeByName(String name);
+
     int delete(Person person);
+
+    @Flush
+    List<BatchResult> flush();
 }

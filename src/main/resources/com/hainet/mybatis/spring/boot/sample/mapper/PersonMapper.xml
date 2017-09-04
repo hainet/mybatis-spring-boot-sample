@@ -53,6 +53,10 @@
     WHERE id = #{id}
   </update>
 
+  <update id="updateAgeByName" parameterType="String">
+    UPDATE person SET (age) = (25) WHERE name = (#{name})
+  </update>
+
   <delete id="delete" parameterType="Person">
     DELETE FROM person WHERE id = #{id}
   </delete>
