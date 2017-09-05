@@ -106,10 +106,9 @@ public class PersonMapperTest {
     @Sql(scripts = "/bulk-insert.sql")
     @Transactional
     public void defaultExecutorTypeReuseTest() {
+        // --mybatis.configuration.default-executor-type=reuse
         List<Person> people = mapper.findAll();
 
-        // --mybatis.configuration.default-executor-type=simple
-        // --mybatis.configuration.default-executor-type=reuse
         final long start = System.currentTimeMillis();
 
         for (Person person : people) {
@@ -122,14 +121,11 @@ public class PersonMapperTest {
     @Test
     @Transactional
     public void defaultExecutorTypeBatchTest() {
-        Person person = mapper.findById(1);
-
-        // --mybatis.configuration.default-executor-type=simple
         // --mybatis.configuration.default-executor-type=batch
         final long start = System.currentTimeMillis();
 
         for (int i=1; i<=100000; i++) {
-            mapper.update(person);
+            mapper.updateAgeByName("hainet");
         }
 
         int updateCount = 0;
@@ -137,6 +133,7 @@ public class PersonMapperTest {
             updateCount += count;
         }
         System.out.println(updateCount);
+
         System.out.println(System.currentTimeMillis() - start);
     }
 }
