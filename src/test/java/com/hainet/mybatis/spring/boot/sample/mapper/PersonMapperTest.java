@@ -128,6 +128,10 @@ public class PersonMapperTest {
             mapper.updateAgeByName("hainet");
         }
 
+        // BATCHモードでは以下のタイミングで更新キューがSQLとして発行される
+        // 1. トランザクション終了時
+        // 2. SELECT文発行直前
+        // 3. @Flushアノテーションが付与されたメソッド実行時
         int updateCount = 0;
         for (int count : mapper.flush().get(0).getUpdateCounts()) {
             updateCount += count;
