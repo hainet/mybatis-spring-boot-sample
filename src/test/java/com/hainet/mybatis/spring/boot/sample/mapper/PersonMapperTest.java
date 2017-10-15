@@ -74,11 +74,13 @@ public class PersonMapperTest {
 
     @Test
     public void insertTest() {
-        mapper.insert(mapper.findById(1));
+        Person person = mapper.findById(1);
 
-        for (Person person : mapper.findAll()) {
-            System.out.println(person);
-        }
+        mapper.insert(person);
+        // selectKey属性によりAUTO_INCREMENTされたID値を取得
+        System.out.println(person.getId());
+
+        mapper.findAll().forEach(it -> System.out.println(it));
     }
 
     @Test

@@ -45,6 +45,9 @@
   <insert id="insert" parameterType="Person">
     INSERT INTO person (name, age, address_id, job, time)
     VALUES (#{name}, #{age}, #{addressId}, #{job}, #{time})
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT MAX(id) FROM person
+    </selectKey>
   </insert>
 
   <update id="update" parameterType="Person">
